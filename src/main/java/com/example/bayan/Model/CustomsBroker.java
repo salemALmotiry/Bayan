@@ -1,0 +1,58 @@
+package com.example.bayan.Model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.Set;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+public class CustomsBroker {
+
+    @Id
+    private Integer id;
+
+    private String licenseNumber;
+
+
+    private String companyName;
+
+    private String commercialLicense;
+
+    private String licenseType;
+
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+    // One-to-one with user if role = BROKER
+    @OneToOne(mappedBy = "broker")
+    @MapsId
+    @JsonIgnore
+    private MyUser user;
+
+    @ManyToOne
+    @JsonIgnore
+    private Border border;
+
+    @OneToMany(mappedBy = "broker",cascade = CascadeType.ALL)
+    private Set<Offer> offers;
+
+
+    @ManyToOne
+    private Post post;
+}
