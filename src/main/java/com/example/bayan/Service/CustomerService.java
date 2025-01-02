@@ -6,8 +6,10 @@ import com.example.bayan.DTO.IN.CustomerDTO;
 import com.example.bayan.DTO.OUT.CbmResponseDTO;
 import com.example.bayan.Model.Customer;
 import com.example.bayan.Model.MyUser;
+import com.example.bayan.Model.Notification;
 import com.example.bayan.Repostiry.AuthRepository;
 import com.example.bayan.Repostiry.CustomerRepository;
+import com.example.bayan.Repostiry.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class CustomerService {
 
 private final AuthRepository authRepository;
     private final CustomerRepository customerRepository;
+    private final NotificationRepository notificationRepository;
 
 
     public com.example.bayan.DTO.OUT.CustomerDTO getMyAccount(Integer userId){
@@ -122,5 +125,33 @@ private final AuthRepository authRepository;
         return new CbmResponseDTO(cbmDTO.getLength(), cbmDTO.getWidth(), cbmDTO.getHeight(), cbmDTO.getQuantity(), cbm);
     }
 
+/////////////customer get All Notification
 
+    public List<Notification>getAllMyNotification(Integer customerId){
+        MyUser customer=authRepository.findMyUserById(customerId);
+
+        if (customer==null){
+            throw new ApiException("Customer with this"+customerId+" does not exist");
+        }
+        List<Notification>notifications=notificationRepository.findNotificationByMyUserId(customerId);
+        if(notifications==null){
+            throw new ApiException("Customer with this"+customerId+" does not have any notifications");
+        }
+           return notifications;
+         }
+          ///////mark Notification to Done reading
+    public void markNotification(Integer notificationId,Integer customerId){
+          Customer customer=customerRepository.findCustomerById(customerId);
+
+             if (customer==null){
+                 throw new ApiException("Customer with this"+customerId+" does not exist");
+             }
+
+           Notification notification=notificationRepository.findNotificationById(notificationId);
+           if (notification==null){
+               throw new ApiException("Notification with this"+notificationId+" does not exist");
+           }
+           notification.setIsRead(true);
+           notificationRepository.save(notification);
+         }
 }

@@ -5,6 +5,7 @@ import com.example.bayan.Api.ApiResponse;
 import com.example.bayan.DTO.IN.Post.AddPostDTO;
 import com.example.bayan.DTO.OUT.Post.PostDTO;
 import com.example.bayan.Model.MyUser;
+import com.example.bayan.Model.Post;
 import com.example.bayan.Service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

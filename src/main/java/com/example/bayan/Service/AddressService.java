@@ -4,11 +4,13 @@ package com.example.bayan.Service;
 import com.example.bayan.Api.ApiException;
 import com.example.bayan.Model.Address;
 import com.example.bayan.Model.MyUser;
+import com.example.bayan.Model.Notification;
 import com.example.bayan.Repostiry.AddressRepository;
 import com.example.bayan.Repostiry.AuthRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,6 +29,12 @@ public class AddressService {
         address.setCustomer(customer.getCustomer());
         addressRepository.save(address);
         authRepository.save(customer);
+
+        ////notification for user when he add new address
+        Notification notification=new Notification();
+        notification.setMassage("تم اضافة العنوان بنجاح");
+        notification.setCreateAt(LocalDateTime.now());
+        notification.setMyUser(customer);
     }
 
     // get myAddresses
@@ -36,6 +44,8 @@ public class AddressService {
             throw new ApiException("Wrong customer Id");
         }
         return  addressRepository.findAddressesByCustomerId(customer_id);
+
+
     }
 
     // update address
@@ -57,6 +67,12 @@ public class AddressService {
       oldAddress.setPostalCode(address.getPostalCode());
       oldAddress.setBuildingNumber(address.getBuildingNumber());
       addressRepository.save(oldAddress);
+
+        ////notification for user when he update  address
+        Notification notification=new Notification();
+        notification.setMassage("تم تحديث العنوان بنجاح");
+        notification.setCreateAt(LocalDateTime.now());
+        notification.setMyUser(customer);
     }
 
     // delete address
@@ -75,6 +91,12 @@ public class AddressService {
         customer.getCustomer().getAddresses().remove(oldAddress);
         authRepository.save(customer);
         addressRepository.delete(oldAddress);
+
+        ////notification for user when he delet address
+        Notification notification=new Notification();
+        notification.setMassage("تم حذف العنوان بنجاح");
+        notification.setCreateAt(LocalDateTime.now());
+        notification.setMyUser(customer);
     }
 
 }

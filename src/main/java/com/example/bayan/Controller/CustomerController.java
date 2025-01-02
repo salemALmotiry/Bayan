@@ -13,13 +13,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/bayan/customer")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
-
+    private final NotificationRepository notificationRepository;
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid CustomerDTO customerDTO) {
         customerService.registerCustomer(customerDTO);

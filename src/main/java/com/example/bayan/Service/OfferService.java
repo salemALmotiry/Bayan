@@ -10,6 +10,7 @@ import com.example.bayan.Repostiry.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class OfferService {
     private final CustomBrokerRepository customBrokerRepository;
     private final OfferRepository offerRepository;
     private final OrdersRepository ordersRepository;
+    private final CustomerRepository customerRepository;
 
     // ____________________broker offer without delivery________________
     public void createOffer(Integer userId, OfferDTO offerDTO) {
@@ -227,8 +229,6 @@ public class OfferService {
         Orders order = new Orders();
         order.setStatus("PLACED");
         order.setPaymentStatus("PENDING");
-        order.setCarrier(null);
-        order.setTrackingNumber(null);
 
         // Associate the offer with the order
         offer.setOrder(order);
@@ -237,9 +237,28 @@ public class OfferService {
         // Save the order and update the offer
         ordersRepository.save(order);
         offerRepository.save(offer);
+
+        // notification for the customer
+        Notification notification = new Notification();
+        notification.setMassage("لقد قبلت هذا العرض");
+        notification.setCreateAt(LocalDateTime.now());
+        notification.setMyUser(customer);
+
+        // notification for the custom broker that his order has been accepted
+        Notification notification2= new Notification();
+        notification2.setMassage("لقد تم قبول عرضك");
+        notification2.setCreateAt(LocalDateTime.now());
+        notification2.setMyUser(offer.getBroker().getUser());
     }
 
-    public List<CustomerOfferDTO> getMyOffers(Integer postID) {
+    //EndPPoint for Customer he can see all The Offer for his post
+    public List<CustomerOfferDTO> getAllOffersforOnePost(Integer postID,Integer customerId) {
+       Customer customer=customerRepository.findCustomerById(customerId);
+
+       if(customer==null){
+           throw new ApiException("Customer with ID " + customerId + " not found.");
+       }
+
         Post post = postRepository.findPostById(postID);
         if (post == null) {
             throw new ApiException("Post with ID " + postID + " not found");

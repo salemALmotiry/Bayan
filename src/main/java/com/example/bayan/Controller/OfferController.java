@@ -95,5 +95,12 @@ public class OfferController {
 
 
 
+    // Get all offers for a specific post for a customer
+    @GetMapping("/AllOffer-post/{post_id}/customer/{customer_id}")
+    public ResponseEntity<?> getAllOffersForOnePost(@PathVariable Integer post_id, @PathVariable Integer customer_id) {
+        List<CustomerOfferDTO> offers = offerService.getAllOffersforOnePost(post_id, customer_id);
+        return ResponseEntity.status(200).body(offers);
+    }
+
 
 }

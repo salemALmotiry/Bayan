@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -85,6 +86,55 @@ public class CustomBrokerService {
       }
     authRepository.delete(broker);
     }
+
+
+    //*** EndPoint to get Customs Brokers By LicenseNumber
+       public CustomsBroker getByLicenseNumber(String lNumber){
+    CustomsBroker customsBrokerList =customBrokerRepository.getCustomsBrokersByLicenseNumber(lNumber);
+
+    if(customsBrokerList==null){
+        throw new ApiException("Customs Broker with this"+lNumber+" does not exist");
+
+    }
+    return customsBrokerList;
+       }
+
+
+    //*** EndPoint to get All Customs Brokers they works in one border
+
+    public List<CustomsBroker>getAllCustomsByBorder(String border){
+        List<CustomsBroker>customsBrokers=customBrokerRepository.getCustomsBrokerByBorderName(border);
+
+        if(customsBrokers.isEmpty()){
+            throw new ApiException("Customs Broker with this"+border+" does not exist");
+        }
+        return customsBrokers;
+    }
+
+    //*** EndPoint to get All Customs Brokers By the name
+
+    public List<CustomsBroker>getAllCustomsByName(String name){
+     List<CustomsBroker>customsBrokers=customBrokerRepository.getCustomsBrokerByCompanyName(name);
+
+     if(customsBrokers.isEmpty()){
+         throw new ApiException("Customs Broker with this"+name+" does not exist");
+     }
+     return customsBrokers;
+    }
+
+
+    //*** EndPoint to get All Customs Brokers By the By License Type
+
+   public List<CustomsBroker>getAllCustomsBYLicenseType(String type){
+       List<CustomsBroker>customsBrokers=customBrokerRepository.getCustomsBrokerByLicenseType(type);
+
+       if (customsBrokers.isEmpty()){
+           throw new ApiException("Customs Broker with this"+type+" does not exist");
+
+       }
+       return customsBrokers;
+   }
+
 
 
 }

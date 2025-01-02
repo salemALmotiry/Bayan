@@ -3,12 +3,15 @@ package com.example.bayan.Controller;
 
 import com.example.bayan.Api.ApiResponse;
 import com.example.bayan.DTO.IN.CustomsBrokerDTO;
+import com.example.bayan.Model.CustomsBroker;
 import com.example.bayan.Service.CustomBrokerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/bayan/custom-broker")
@@ -43,4 +46,32 @@ public class CustomBrokerController {
         return ResponseEntity.status(200).body(new ApiResponse("Account deleted Successfully"));
     }
 
+
+    // Get Customs Broker by License Number
+    @GetMapping("/license-number/{licenseNumber}")
+    public ResponseEntity<?> getByLicenseNumber(@PathVariable String licenseNumber) {
+        CustomsBroker customsBroker = brokerService.getByLicenseNumber(licenseNumber);
+        return ResponseEntity.status(200).body(customsBroker);
+    }
+
+    // Get all Customs Brokers working at a specific border
+    @GetMapping("/border/{border}")
+    public ResponseEntity<?> getAllCustomsByBorder(@PathVariable String border) {
+        List<CustomsBroker> customsBrokers = brokerService.getAllCustomsByBorder(border);
+        return ResponseEntity.status(200).body(customsBrokers);
+    }
+
+    // Get all Customs Brokers by name
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> getAllCustomsByName(@PathVariable String name) {
+        List<CustomsBroker> customsBrokers = brokerService.getAllCustomsByName(name);
+        return ResponseEntity.status(200).body(customsBrokers);
+    }
+
+    // Get all Customs Brokers by License Type
+    @GetMapping("/license-type/{type}")
+    public ResponseEntity<?> getAllCustomsByLicenseType(@PathVariable String type) {
+        List<CustomsBroker> customsBrokers = brokerService.getAllCustomsBYLicenseType(type);
+        return ResponseEntity.status(200).body(customsBrokers);
+    }
 }
