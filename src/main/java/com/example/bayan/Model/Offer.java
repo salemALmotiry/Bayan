@@ -49,7 +49,7 @@ public class Offer {
 
     // If we want a relationship with Orders:
     // One offer might have one order if accepted
-    @ManyToOne
+    @OneToOne
     @JsonIgnore
     private Orders order;
 

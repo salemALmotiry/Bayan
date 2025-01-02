@@ -1,5 +1,6 @@
 package com.example.bayan.Repostiry;
 
+import com.example.bayan.Model.Border;
 import com.example.bayan.Model.CustomsBroker;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,11 +14,13 @@ public interface CustomBrokerRepository extends JpaRepository<CustomsBroker,Inte
     CustomsBroker findCustomsBrokerById(Integer id);
 
 
-    CustomsBroker getCustomsBrokersByLicenseNumber(Integer lNumber);
+    CustomsBroker getCustomsBrokersByLicenseNumber(String licenseNumber);
 
-    List<CustomsBroker> getCustomsBrokerByBorder(String border);
+    List<CustomsBroker> getCustomsBrokerByBorderName(String border);
 
-    List<CustomsBroker> getCustomsBrokerByCustomerName(String customerName);
+//    List<CustomsBroker> getCustomsBrokerByCustomerName(String customerName);
+
+    List<CustomsBroker> getCustomsBrokerByCompanyName(String customerId);
 
     List<CustomsBroker>getCustomsBrokerByLicenseType(String licenseType);
 

@@ -77,8 +77,8 @@ public class Post {
     @OneToMany
     private Set<Offer> offers;
 
-    @OneToMany
-    private Set<CustomsBroker> customsBrokers;
+    @ManyToOne
+    private CustomsBroker customsBrokers;
 
     @OneToMany
     private Set<RequiredDocuments> requiredDocsLists;

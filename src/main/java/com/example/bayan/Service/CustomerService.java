@@ -1,7 +1,9 @@
 package com.example.bayan.Service;
 
 import com.example.bayan.Api.ApiException;
+import com.example.bayan.DTO.IN.CbmDTO;
 import com.example.bayan.DTO.IN.CustomerDTO;
+import com.example.bayan.DTO.OUT.CbmResponseDTO;
 import com.example.bayan.Model.Customer;
 import com.example.bayan.Model.MyUser;
 import com.example.bayan.Repostiry.AuthRepository;
@@ -93,6 +95,32 @@ private final AuthRepository authRepository;
 
 
 
+
+    // cbm
+    public CbmResponseDTO calculateCbm(CbmDTO cbmDTO) {
+        double length = cbmDTO.getLength();
+        double width = cbmDTO.getWidth();
+        double height = cbmDTO.getHeight();
+        int quantity = cbmDTO.getQuantity();
+        String unit = cbmDTO.getUnit();
+
+        // Convert units to meters if necessary
+        if ("in".equalsIgnoreCase(unit)) {
+            length /= 39.37; // Convert inches to meters
+            width /= 39.37;
+            height /= 39.37;
+        } else if ("cm".equalsIgnoreCase(unit)) {
+            length /= 100; // Convert centimeters to meters
+            width /= 100;
+            height /= 100;
+        }
+
+        // Calculate total CBM
+        double cbm = length * width * height * quantity;
+
+        // Return a detailed response
+        return new CbmResponseDTO(cbmDTO.getLength(), cbmDTO.getWidth(), cbmDTO.getHeight(), cbmDTO.getQuantity(), cbm);
+    }
 
 
 }

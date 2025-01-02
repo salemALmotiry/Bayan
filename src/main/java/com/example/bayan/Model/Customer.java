@@ -45,4 +45,11 @@ public class Customer {
     @OneToMany(mappedBy ="customer",cascade =CascadeType.ALL)
     private Set<Address> addresses;
 
+    // Customer can give and receive reviews
+    @OneToMany(mappedBy = "reviewedCustomer", cascade = CascadeType.ALL)
+    private Set<com.example.bayan.Model.Review> receivedReviews;
+
+    @OneToMany(mappedBy = "reviewerCustomer", cascade = CascadeType.ALL)
+    private Set<com.example.bayan.Model.Review> givenReviews;
+
 }

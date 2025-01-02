@@ -53,6 +53,14 @@ public class CustomsBroker {
     private Set<Offer> offers;
 
 
-    @ManyToOne
-    private Post post;
+    @OneToMany
+    private Set<Post> post;
+
+
+    // Broker can give and receive reviews
+    @OneToMany(mappedBy = "reviewedBroker", cascade = CascadeType.ALL)
+    private Set<com.example.bayan.Model.Review> receivedReviews;
+
+    @OneToMany(mappedBy = "reviewerBroker", cascade = CascadeType.ALL)
+    private Set<com.example.bayan.Model.Review> givenReviews;
 }

@@ -1,5 +1,6 @@
 package com.example.bayan.Repostiry;
 
+import com.example.bayan.Model.CustomsBroker;
 import com.example.bayan.Model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,5 +12,26 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAllByCustomerId(Integer userId);
 
     Post findPostById(Integer postId);
+
+
+    List<Post> findPostsByCustomsBrokers(CustomsBroker broker);
+
+
+
+    List<Post>findPostByCategory(String category);
+
+    List<Post> findPostByCountryOfOrigin(String countryOfOrigin);
+
+    List<Post>findPostByCategoryAndCountryOfOrigin(String category, String countryOfOrigin);
+
+    List<Post>findPostByShipmentType(String shipmentType);
+
+
+    List<Post>findPostByCategoryAndShipmentType(String category, String shipmentType);
+
+
+    List<Post>findPostByCategoryAndShipmentTypeAndCountryOfOrigin(String category, String shipmentType, String countryOfOrigin);
+
+
 
 }

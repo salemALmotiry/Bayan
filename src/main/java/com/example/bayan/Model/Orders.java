@@ -20,7 +20,6 @@ import java.util.Set;
 public class Orders {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
@@ -33,16 +32,13 @@ public class Orders {
     private String paymentStatus = "PENDING";
 
 
-    @Column(length = 100)
-    private String carrier;
 
-    @Column(length = 100)
-    private String trackingNumber;
 
 
     // The accepted offer that created this order
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
-    private Set<Offer> offers;
+    @OneToOne
+    @MapsId
+    private Offer offer;
 
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
@@ -53,5 +49,8 @@ public class Orders {
      private Set<Delivery> deliveries;
 
 
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private Set<com.example.bayan.Model.Review> reviews;
 
 }

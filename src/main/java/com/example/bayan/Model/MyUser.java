@@ -31,7 +31,7 @@ public class MyUser implements UserDetails {
     @Column(nullable = false, length = 30, unique = true)
     private String username;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100,unique = true)
     @NotEmpty(message = "Email is required")
     @Size(min = 3, max = 100, message = "Email must be between 3 and 100 characters")
     private String email;
@@ -47,7 +47,7 @@ public class MyUser implements UserDetails {
     //Customer or broker
     private String role;
 
-    @Column(length = 50)
+    @Column(length = 50,unique = true)
     private String phoneNumber;
 
     @Column(length = 100)

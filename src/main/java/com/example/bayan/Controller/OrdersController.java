@@ -1,6 +1,7 @@
 package com.example.bayan.Controller;
 
 
+import com.example.bayan.Api.ApiResponse;
 import com.example.bayan.Service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,18 @@ public class OrdersController {
             @PathVariable Integer orderId,
             @PathVariable Integer userId) {
         ordersService.cancelOrder(orderId, userId);
-        return ResponseEntity.status(200).body("Order canceled successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Order canceled successfully"));
 
     }
+
+    @PutMapping("/update-order-status/{orderId}/{userId}")
+    public ResponseEntity updateOrderStatus(@PathVariable Integer orderId, @PathVariable Integer userId) {
+
+        ordersService.updateOrderStatus(orderId, userId);
+
+        return ResponseEntity.status(200).body(new ApiResponse("Order status updated successfully"));
+    }
+
 
 
 }

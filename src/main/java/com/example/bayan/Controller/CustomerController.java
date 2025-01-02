@@ -1,8 +1,12 @@
 package com.example.bayan.Controller;
 
 import com.example.bayan.Api.ApiResponse;
+import com.example.bayan.DTO.IN.CbmDTO;
 import com.example.bayan.DTO.IN.CustomerDTO;
 import com.example.bayan.DTO.IN.CustomsBrokerDTO;
+import com.example.bayan.DTO.OUT.CbmResponseDTO;
+import com.example.bayan.Model.Notification;
+import com.example.bayan.Repostiry.NotificationRepository;
 import com.example.bayan.Service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +40,31 @@ public class CustomerController {
         return ResponseEntity.status(200).body(new ApiResponse("Account updated Successfully"));
     }
 
+    @PostMapping("/calculate-cbm")
+    public ResponseEntity calculateCbm(@RequestBody @Valid CbmDTO cbmDTO) {
+
+        CbmResponseDTO response = customerService.calculateCbm(cbmDTO);
+
+        return ResponseEntity.status(200).body(response);
+    }
+
+
+
+    // Get all notifications for a customer
+    @GetMapping("/getAllMyNotifications/{customerId}")
+    public ResponseEntity<?> getAllNotifications(@PathVariable Integer customerId) {
+        List<Notification> notifications = customerService.getAllMyNotification(customerId);
+        return ResponseEntity.status(200).body(notifications);
+    }
+
+    // Mark a notification as read
+    @PutMapping("/ReadMyNotifications/{customerId}/{notificationId}/mark-read")
+    public ResponseEntity<?> markNotificationAsRead(
+            @PathVariable Integer customerId,
+            @PathVariable Integer notificationId) {
+        customerService.markNotification(notificationId, customerId);
+        return ResponseEntity.status(200).body(new ApiResponse("Notification marked as read successfully"));
+    }
 
 
 
