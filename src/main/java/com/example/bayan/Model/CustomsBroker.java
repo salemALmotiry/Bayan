@@ -32,6 +32,9 @@ public class CustomsBroker {
     private String licenseType;
 
 
+     private Boolean isActive=false;
+
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

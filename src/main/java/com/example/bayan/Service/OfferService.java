@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -25,6 +26,9 @@ public class OfferService {
     private final OfferRepository offerRepository;
     private final OrdersRepository ordersRepository;
     private final CustomerRepository customerRepository;
+
+    private final EmailService emailService;
+    private final NotificationRepository notificationRepository;
 
     // ____________________Broker Offer Without Delivery________________
     public void createOffer(Integer userId, OfferDTO offerDTO) {
@@ -256,15 +260,52 @@ public class OfferService {
         notification2.setMassage("لقد تم قبول عرضك");
         notification2.setCreateAt(LocalDateTime.now());
         notification2.setMyUser(offer.getBroker().getUser());
+        notificationRepository.save(notification2);
+
+        sendAcceptanceEmailToBroker(offer);
+       sendAcceptanceEmailToCustomer(offer);
+
+    }
+
+
+    private void sendAcceptanceEmailToCustomer(Offer offer) {
+        String subject = "تم قبول العرض: " + offer.getPost().getTitle();
+        String body = "عزيزي " + offer.getPost().getCustomer().getUser().getFullName() + ",\n\n"
+                + "تم قبول عرضك للإعلان بعنوان '" + offer.getPost().getTitle() + "'.\n"
+                + "تفاصيل الطلب:\n\n"
+                + "سعر العرض: " + offer.getPrice() + " ريال سعودي\n"
+                + "حالة الطلب: تم وضعه\n"
+                + "حالة الدفع: قيد الانتظار\n\n"
+                + "شكرًا لاستخدامك خدماتنا!\n\n"
+                + "أطيب التحيات,\n"
+                + "فريق بيان";
+
+        emailService.sendEmail(offer.getPost().getCustomer().getUser().getEmail(), subject, body);
+    }
+
+    private void sendAcceptanceEmailToBroker(Offer offer) {
+        String subject = "تم قبول عرضك!";
+        String body = "عزيزي " + offer.getBroker().getUser().getFullName() + ",\n\n"
+                + "تهانينا! تم قبول عرضك للإعلان بعنوان '" + offer.getPost().getTitle() + "'.\n"
+                + "تفاصيل العرض:\n\n"
+                + "سعر العرض: " + offer.getPrice() + " ريال سعودي\n"
+                + "اسم العميل: " + offer.getBroker().getUser().getFullName() + "\n"
+                + "حالة الطلب: تم وضعه\n"
+                + "حالة الدفع: قيد الانتظار\n\n"
+                + "يرجى متابعة الإجراءات التالية بناءً على الطلب.\n\n"
+                + "أطيب التحيات,\n"
+                + "فريق بيان";
+
+        emailService.sendEmail(offer.getBroker().getUser().getEmail(), subject, body);
     }
 
     //EndPPoint for Customer he can see all The Offer for his post
-    public List<CustomerOfferDTO> getAllOffersforOnePost(Integer postID,Integer customerId) {
-       Customer customer=customerRepository.findCustomerById(customerId);
+    public List<CustomerOfferDTO> getAllOffersforOnePost(Integer postID, Integer customerId) {
+        Customer customer = customerRepository.findCustomerById(customerId);
 
-       if(customer==null){
-           throw new ApiException("Customer with ID " + customerId + " not found.");
-       }
+        if (customer == null) {
+            throw new ApiException("Customer with ID " + customerId + " not found.");
+        }
 
         Post post = postRepository.findPostById(postID);
         if (post == null) {
@@ -273,17 +314,16 @@ public class OfferService {
 
         List<Offer> offers = offerRepository.getAllOfferByPost(post);
 
-        List<CustomerOfferDTO> offerDTOList = new ArrayList<>();
-        for (Offer offer : offers) {
-            CustomerOfferDTO dto = new CustomerOfferDTO();
-            dto.setFullName(offer.getBroker().getUser().getFullName());
-            dto.setCompanyName(offer.getBroker().getCompanyName());
-            dto.setPrice(offer.getPrice());
-
-            offerDTOList.add(dto); }
-
-          return offerDTOList;
+        return offers.stream()
+                .map(offer -> {
+                    CustomerOfferDTO dto = new CustomerOfferDTO();
+                    dto.setFullName(offer.getBroker().getUser().getFullName());
+                    dto.setCompanyName(offer.getBroker().getCompanyName());
+                    dto.setPrice(offer.getPrice());
+                    return dto;
+                })
+                .sorted(Comparator.comparing(CustomerOfferDTO::getPrice))
+                .toList();
     }
-
 
 }
