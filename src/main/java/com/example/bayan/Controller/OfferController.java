@@ -67,7 +67,7 @@ public class OfferController {
         return ResponseEntity.status(200).body(new ApiResponse("Offer with delivery updated successfully"));
     }
 
-    @DeleteMapping("/delete-offer/{userId}/{offerId}")
+    @DeleteMapping("/delete-offer-with-delivery/{userId}/{offerId}")
     public ResponseEntity removeOffer(@PathVariable Integer userId, @PathVariable Integer offerId) {
 
         offerService.removeOffer(userId, offerId);
@@ -79,19 +79,17 @@ public class OfferController {
     //_________________________________________________
 
     @PutMapping("/accept-offer/{userId}/{offerId}")
-    public ResponseEntity<?> acceptOffer(
-            @PathVariable Integer userId,
-            @PathVariable Integer offerId) {
+    public ResponseEntity<?> acceptOffer(@PathVariable Integer userId, @PathVariable Integer offerId) {
         offerService.acceptOffer(userId, offerId);
         return ResponseEntity.status(200).body("Offer accepted successfully");
     }
 
 
-    @GetMapping("/my-offers/{postId}/{userId}")
-    public ResponseEntity<List<CustomerOfferDTO>> getMyOffers(@PathVariable Integer postId,@PathVariable Integer userId) {
-        List<CustomerOfferDTO> offers = offerService.getAllOffersforOnePost(postId,userId);
-        return ResponseEntity.status(200).body(offers);
-    }
+//    @GetMapping("/my-offers/{postId}/{userId}")
+//    public ResponseEntity<List<CustomerOfferDTO>> getMyOffers(@PathVariable Integer postId,@PathVariable Integer userId) {
+//        List<CustomerOfferDTO> offers = offerService.getAllOffersforOnePost(postId,userId);
+//        return ResponseEntity.status(200).body(offers);
+//    }
 
 
 

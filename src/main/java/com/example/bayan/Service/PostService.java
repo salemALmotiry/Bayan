@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -226,72 +227,128 @@ public class PostService {
     //****** 6 filter for one page and any one can see it
 
 
-    //**All Post By Catgory
-    public List<Post>getAllPostByCategory(String category){
-        List<Post>posts=postRepository.findPostByCategory(category);
+    // **All Posts By Category (Excluding Posts with a Broker)
+    public List<Post> getAllPostByCategory(String category) {
+        List<Post> posts = postRepository.findPostByCategory(category);
 
-        if(posts.isEmpty()){
+        if (posts.isEmpty()) {
             throw new ApiException("No posts found for the category " + category);
         }
-        return posts;
-    }
 
+        // Filter out posts that have a broker assigned
+        List<Post> filteredPosts = posts.stream()
+                .filter(post -> post.getCustomsBrokers() == null)
+                .collect(Collectors.toList());
 
-
-    //**All Post By Country Of Origin
-
-    public List<Post>getAllPostByCountryOfOrigin(String countryOfOrigin){
-         List<Post>posts=postRepository.findPostByCountryOfOrigin(countryOfOrigin);
-
-        if(posts.isEmpty()){
-            throw new ApiException("No posts found for the country of origin " + countryOfOrigin);
+        if (filteredPosts.isEmpty()) {
+            throw new ApiException("No posts without brokers found for the category " + category);
         }
-        return posts;
- }
 
-      //**All Post By Shipment Type
-    public List<Post>getAllPostByShipmentType(String shipmentType){
-        List<Post>posts=postRepository.findPostByShipmentType(shipmentType);
-        if(posts.isEmpty()){
-            throw new ApiException("No posts found for the shipment type " + shipmentType);
+        return filteredPosts;
+    }
+
+
+
+
+    // **All Posts By Country Of Origin (Excluding Posts with a Broker)
+    public List<Post> getAllPostByCountryOfOrigin(String countryOfOrigin) {
+        List<Post> posts = postRepository.findPostByCountryOfOrigin(countryOfOrigin);
+
+        if (posts.isEmpty()) {
+            throw new ApiException("No posts found for the specified country of origin: " + countryOfOrigin);
         }
-        return posts;
-    }
 
-    // if someone want to see the Category And CountryOfOrigin
+        // Filter out posts that have a broker assigned
+        List<Post> filteredPosts = posts.stream()
+                .filter(post -> post.getCustomsBrokers() == null)
+                .collect(Collectors.toList());
 
-    public List<Post>getAllPostByTheCategoryAndCountryOfOrigin(String category, String countryOfOrigin){
-     List<Post>posts=postRepository.findPostByCategoryAndCountryOfOrigin(category, countryOfOrigin);
-
-     if(posts.isEmpty()){
-         throw new ApiException("No posts found for the category or the country of origin " + category);
-     }
-     return posts;
-    }
-
-
-
-    //if someone want to see the Category And ShipmentType
-    public List<Post>getAllPostByCategoryAndShipmentType(String category, String shipmentType){
-        List<Post>posts=postRepository.findPostByCategoryAndShipmentType(category, shipmentType);
-
-        if(posts.isEmpty()){
-            throw new ApiException("No posts found for the category or the shipment type " + category+shipmentType);
+        if (filteredPosts.isEmpty()) {
+            throw new ApiException("No posts without brokers found for the specified country of origin: " + countryOfOrigin);
         }
-        return posts;
 
+        return filteredPosts;
     }
 
+    // **All Posts By Shipment Type (Excluding Posts with a Broker)
+    public List<Post> getAllPostByShipmentType(String shipmentType) {
+        List<Post> posts = postRepository.findPostByShipmentType(shipmentType);
 
-
-    //if someone want to see the Category And ShipmentType and CountryOfOrigin
-
-    public List<Post>getAllPostByCategoryAndShipmentTypeAndCountryOfOrigin(String category, String shipmentType, String countryOfOrigin){
-        List<Post>posts=postRepository.findPostByCategoryAndShipmentTypeAndCountryOfOrigin(category, shipmentType, countryOfOrigin);
-
-        if(posts.isEmpty()){
-            throw new ApiException("No posts found for the category "+category+"or the shipment type"+shipmentType+" or Country Of Origin  "+countryOfOrigin );
+        if (posts.isEmpty()) {
+            throw new ApiException("No posts found for the specified shipment type: " + shipmentType);
         }
-        return posts;
+
+        // Filter out posts that have a broker assigned
+        List<Post> filteredPosts = posts.stream()
+                .filter(post -> post.getCustomsBrokers() == null)
+                .collect(Collectors.toList());
+
+        if (filteredPosts.isEmpty()) {
+            throw new ApiException("No posts without brokers found for the specified shipment type: " + shipmentType);
+        }
+
+        return filteredPosts;
     }
+
+    // **All Posts By Category And Country Of Origin (Excluding Posts with a Broker)
+    public List<Post> getAllPostByTheCategoryAndCountryOfOrigin(String category, String countryOfOrigin) {
+        List<Post> posts = postRepository.findPostByCategoryAndCountryOfOrigin(category, countryOfOrigin);
+
+        if (posts.isEmpty()) {
+            throw new ApiException("No posts found for the specified category: " + category + " or country of origin: " + countryOfOrigin);
+        }
+
+        // Filter out posts that have a broker assigned
+        List<Post> filteredPosts = posts.stream()
+                .filter(post -> post.getCustomsBrokers() == null)
+                .collect(Collectors.toList());
+
+        if (filteredPosts.isEmpty()) {
+            throw new ApiException("No posts without brokers found for the specified category: " + category + " and country of origin: " + countryOfOrigin);
+        }
+
+        return filteredPosts;
+    }
+
+    // **All Posts By Category And Shipment Type (Excluding Posts with a Broker)
+    public List<Post> getAllPostByCategoryAndShipmentType(String category, String shipmentType) {
+        List<Post> posts = postRepository.findPostByCategoryAndShipmentType(category, shipmentType);
+
+        if (posts.isEmpty()) {
+            throw new ApiException("No posts found for the specified category: " + category + " or shipment type: " + shipmentType);
+        }
+
+        // Filter out posts that have a broker assigned
+        List<Post> filteredPosts = posts.stream()
+                .filter(post -> post.getCustomsBrokers() == null)
+                .collect(Collectors.toList());
+
+        if (filteredPosts.isEmpty()) {
+            throw new ApiException("No posts without brokers found for the specified category: " + category + " and shipment type: " + shipmentType);
+        }
+
+        return filteredPosts;
+    }
+
+    // **All Posts By Category, Shipment Type, And Country Of Origin (Excluding Posts with a Broker)
+    public List<Post> getAllPostByCategoryAndShipmentTypeAndCountryOfOrigin(String category, String shipmentType, String countryOfOrigin) {
+        List<Post> posts = postRepository.findPostByCategoryAndShipmentTypeAndCountryOfOrigin(category, shipmentType, countryOfOrigin);
+
+        if (posts.isEmpty()) {
+            throw new ApiException("No posts found for the specified category: " + category + ", shipment type: " + shipmentType + ", or country of origin: " + countryOfOrigin);
+        }
+
+        // Filter out posts that have a broker assigned
+        List<Post> filteredPosts = posts.stream()
+                .filter(post -> post.getCustomsBrokers() == null)
+                .collect(Collectors.toList());
+
+        if (filteredPosts.isEmpty()) {
+            throw new ApiException("No posts without brokers found for the specified category: " + category + ", shipment type: " + shipmentType + ", and country of origin: " + countryOfOrigin);
+        }
+
+        return filteredPosts;
+    }
+
+
 }

@@ -59,7 +59,7 @@ public class PostController {
     }
 
 
-    @PostMapping("/send-post/{customerId}/{brokerId}")
+    @PostMapping("/send-ad-to-broker/{customerId}/{brokerId}")
     public ResponseEntity sendPostForOneBroker(@PathVariable Integer customerId, @PathVariable Integer brokerId, @RequestBody @Valid AddPostDTO addPostDTO) {
 
         postService.sendPostForOnoBroker(customerId, brokerId, addPostDTO);
@@ -98,28 +98,21 @@ public class PostController {
 
     // Get all posts by category and country of origin
     @GetMapping("/by-category-and-country/{category}/{countryOfOrigin}")
-    public ResponseEntity<?> getAllPostsByCategoryAndCountryOfOrigin(
-            @PathVariable String category,
-            @PathVariable String countryOfOrigin) {
+    public ResponseEntity<?> getAllPostsByCategoryAndCountryOfOrigin(@PathVariable String category, @PathVariable String countryOfOrigin) {
         List<Post> posts = postService.getAllPostByTheCategoryAndCountryOfOrigin(category, countryOfOrigin);
         return ResponseEntity.ok(posts);
     }
 
     // Get all posts by category and shipment type
     @GetMapping("/by-category-and-shipment-type/{category}/{shipmentType}")
-    public ResponseEntity<?> getAllPostsByCategoryAndShipmentType(
-            @PathVariable String category,
-            @PathVariable String shipmentType) {
+    public ResponseEntity<?> getAllPostsByCategoryAndShipmentType(@PathVariable String category, @PathVariable String shipmentType) {
         List<Post> posts = postService.getAllPostByCategoryAndShipmentType(category, shipmentType);
         return ResponseEntity.ok(posts);
     }
 
     // Get all posts by category, shipment type, and country of origin
     @GetMapping("/by-category-shipment-type-country/{category}/{shipmentType}/{countryOfOrigin}")
-    public ResponseEntity<?> getAllPostsByCategoryAndShipmentTypeAndCountryOfOrigin(
-            @PathVariable String category,
-            @PathVariable String shipmentType,
-            @PathVariable String countryOfOrigin) {
+    public ResponseEntity<?> getAllPostsByCategoryAndShipmentTypeAndCountryOfOrigin(@PathVariable String category, @PathVariable String shipmentType, @PathVariable String countryOfOrigin) {
         List<Post> posts = postService.getAllPostByCategoryAndShipmentTypeAndCountryOfOrigin(category, shipmentType, countryOfOrigin);
         return ResponseEntity.ok(posts);
     }

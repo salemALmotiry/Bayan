@@ -3,6 +3,8 @@ package com.example.bayan.Controller;
 
 import com.example.bayan.Api.ApiResponse;
 import com.example.bayan.DTO.IN.CustomsBrokerDTO;
+import com.example.bayan.DTO.IN.UpdateCustomsBrokerDTO;
+import com.example.bayan.DTO.OUT.CustomBrokerFilterDTO;
 import com.example.bayan.Model.CustomsBroker;
 import com.example.bayan.Service.CustomBrokerService;
 import jakarta.validation.Valid;
@@ -35,43 +37,47 @@ public class CustomBrokerController {
 
     // update
     @PutMapping("/update-my-account/broker-id/{broker_id}")
-    public ResponseEntity<?> updateMyAccount(@PathVariable Integer broker_id , @RequestBody @Valid CustomsBrokerDTO customsBrokerDTO){
+    public ResponseEntity<?> updateMyAccount(@PathVariable Integer broker_id , @RequestBody @Valid UpdateCustomsBrokerDTO customsBrokerDTO){
         brokerService.updateMyAccount(broker_id , customsBrokerDTO);
         return ResponseEntity.status(200).body(new ApiResponse("Account updated Successfully"));
     }
     // delete
-    @DeleteMapping("/delete-my-account/broker-id/{broker_id}")
-    public ResponseEntity<?> deleteMyAccount(@PathVariable Integer broker_id){
-        brokerService.deleteMyAccount(broker_id);
-        return ResponseEntity.status(200).body(new ApiResponse("Account deleted Successfully"));
-    }
+
+
+//    @DeleteMapping("/delete-my-account/broker-id/{broker_id}")
+//    public ResponseEntity<?> deleteMyAccount(@PathVariable Integer broker_id){
+//        brokerService.deleteMyAccount(broker_id);
+//        return ResponseEntity.status(200).body(new ApiResponse("Account deleted Successfully"));
+//    }
 
 
     // Get Customs Broker by License Number
     @GetMapping("/license-number/{licenseNumber}")
     public ResponseEntity<?> getByLicenseNumber(@PathVariable String licenseNumber) {
-        CustomsBroker customsBroker = brokerService.getByLicenseNumber(licenseNumber);
+        CustomBrokerFilterDTO customsBroker = brokerService.getByLicenseNumber(licenseNumber);
         return ResponseEntity.status(200).body(customsBroker);
     }
 
     // Get all Customs Brokers working at a specific border
     @GetMapping("/border/{border}")
     public ResponseEntity<?> getAllCustomsByBorder(@PathVariable String border) {
-        List<CustomsBroker> customsBrokers = brokerService.getAllCustomsByBorder(border);
+        List<CustomBrokerFilterDTO> customsBrokers = brokerService.getAllCustomsByBorder(border);
         return ResponseEntity.status(200).body(customsBrokers);
     }
 
     // Get all Customs Brokers by name
     @GetMapping("/name/{name}")
     public ResponseEntity<?> getAllCustomsByName(@PathVariable String name) {
-        List<CustomsBroker> customsBrokers = brokerService.getAllCustomsByName(name);
+        List<CustomBrokerFilterDTO> customsBrokers = brokerService.getAllCustomsByName(name);
         return ResponseEntity.status(200).body(customsBrokers);
     }
 
     // Get all Customs Brokers by License Type
     @GetMapping("/license-type/{type}")
     public ResponseEntity<?> getAllCustomsByLicenseType(@PathVariable String type) {
-        List<CustomsBroker> customsBrokers = brokerService.getAllCustomsBYLicenseType(type);
+        List<CustomBrokerFilterDTO> customsBrokers = brokerService.getAllCustomsByLicenseType(type);
         return ResponseEntity.status(200).body(customsBrokers);
     }
+
+
 }

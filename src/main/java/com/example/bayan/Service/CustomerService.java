@@ -3,6 +3,7 @@ package com.example.bayan.Service;
 import com.example.bayan.Api.ApiException;
 import com.example.bayan.DTO.IN.CbmDTO;
 import com.example.bayan.DTO.IN.CustomerDTO;
+import com.example.bayan.DTO.IN.UpdateCustomerDTO;
 import com.example.bayan.DTO.OUT.CbmResponseDTO;
 import com.example.bayan.Model.Customer;
 import com.example.bayan.Model.MyUser;
@@ -76,21 +77,21 @@ private final AuthRepository authRepository;
 
     }
 
-    public void updateCustomerAccount(Integer customerID,CustomerDTO customerDTO){
+    public void updateCustomerAccount(Integer customerID, UpdateCustomerDTO customerDTO){
         MyUser oldCustomer=authRepository.findMyUserById(customerID);
         if(oldCustomer==null){
             throw new ApiException(" Customer id is wrong");
         }
 
         oldCustomer.setUsername(customerDTO.getUsername());
-        oldCustomer.setPassword(new BCryptPasswordEncoder().encode(customerDTO.getPassword()));
+        oldCustomer.setFullName(customerDTO.getFullName());
         oldCustomer.setEmail(customerDTO.getEmail());
         oldCustomer.setPhoneNumber(customerDTO.getPhoneNumber());
         oldCustomer.setUpdatedAt(LocalDateTime.now());
 
         authRepository.save(oldCustomer);
 
-        Customer customer=new Customer();
+        Customer customer= oldCustomer.getCustomer();
         customer.setCompanyName(customerDTO.getCompanyName());
 
         customerRepository.save(customer);
@@ -130,14 +131,17 @@ private final AuthRepository authRepository;
     public List<Notification>getAllMyNotification(Integer customerId){
         MyUser customer=authRepository.findMyUserById(customerId);
 
-        if (customer==null){
+        if (customer==null)
             throw new ApiException("Customer with this"+customerId+" does not exist");
-        }
+
         List<Notification>notifications=notificationRepository.findNotificationByMyUserId(customerId);
-        if(notifications==null){
+
+
+        if(notifications==null)
             throw new ApiException("Customer with this"+customerId+" does not have any notifications");
-        }
+
            return notifications;
+
          }
           ///////mark Notification to Done reading
     public void markNotification(Integer notificationId,Integer customerId){

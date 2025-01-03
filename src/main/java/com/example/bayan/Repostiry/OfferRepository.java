@@ -12,5 +12,10 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
     Offer findOfferById(Integer id);
 
 
+    Offer findOfferByIdAndPost_CustomerId(Integer id, Integer customerId);
     List<Offer>getAllOfferByPost(Post post);
+
+    Offer findOfferByIdAndBrokerId(Integer id, Integer broker_id);
+
+    Boolean existsByPostAndBrokerAndOfferStatus(Post post, CustomsBroker broker, String offerStatus);
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/bayan/offer")
+@RequestMapping("/api/v1/bayan/order")
 @RequiredArgsConstructor
 
 public class OrdersController {
@@ -19,9 +19,7 @@ public class OrdersController {
     private final OrdersService ordersService;
 
     @PutMapping("/cancel-order/{orderId}/{userId}")
-    public ResponseEntity<?> cancelOrder(
-            @PathVariable Integer orderId,
-            @PathVariable Integer userId) {
+    public ResponseEntity<?> cancelOrder(@PathVariable Integer orderId, @PathVariable Integer userId) {
         ordersService.cancelOrder(orderId, userId);
         return ResponseEntity.status(200).body(new ApiResponse("Order canceled successfully"));
 

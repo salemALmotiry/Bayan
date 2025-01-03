@@ -22,11 +22,8 @@ public class Orders {
     @Id
     private Integer id;
 
-
-
     @Column(length = 50)
     private String status = "PLACED";
-
 
     @Column(length = 50)
     private String paymentStatus = "PENDING";

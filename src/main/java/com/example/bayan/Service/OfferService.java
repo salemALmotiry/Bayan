@@ -26,36 +26,39 @@ public class OfferService {
     private final OrdersRepository ordersRepository;
     private final CustomerRepository customerRepository;
 
-    // ____________________broker offer without delivery________________
+    // ____________________Broker Offer Without Delivery________________
     public void createOffer(Integer userId, OfferDTO offerDTO) {
-        MyUser myUser = authRepository.findMyUserById(userId);
-
-
-        if (myUser == null){
-            throw new ApiException("Broker not found");
+        // Validate the broker
+        MyUser broker = authRepository.findMyUserById(userId);
+        if (broker == null) {
+            throw new ApiException("Broker with ID " + userId + " not found.");
         }
 
+        // Validate the post
         Post post = postRepository.findPostById(offerDTO.getPostId());
-
-        if (post == null){
-            throw new ApiException("Post not found");
+        if (post == null) {
+            throw new ApiException("Post with ID " + offerDTO.getPostId() + " not found.");
         }
 
-        if (!post.getStatus().equals("Pending")){
-            throw new ApiException("Post is taken by anther broker");
+        // Ensure the post status is pending
+        if (!"Pending".equalsIgnoreCase(post.getStatus())) {
+            throw new ApiException("Post with ID " + offerDTO.getPostId() + " is not available for offers (current status: " + post.getStatus() + ").");
         }
 
+        // Ensure there isn't already an existing pending offer for the same broker and post
+        if (offerRepository.existsByPostAndBrokerAndOfferStatus(post, broker.getBroker(), "Pending")) {
+            throw new ApiException("A pending offer already exists for this post and broker.");
+        }
+
+        // Create the offer
         Offer offer = new Offer();
-
         offer.setPost(post);
         offer.setPrice(offerDTO.getPrice());
         offer.setBroker(customBrokerRepository.findCustomsBrokerById(userId));
-        offer.setOfferStatus("pending");
+        offer.setOfferStatus("PENDING");
         offer.setDeliveryIncluded(false);
 
         offerRepository.save(offer);
-
-
     }
 
     public void updateOffer(Integer userId,Integer offerId, OfferDTO offerDTO) {
@@ -215,7 +218,8 @@ public class OfferService {
         }
 
         // Validate the offer
-        Offer offer = offerRepository.findOfferById(offerId);
+        Offer offer = offerRepository.findOfferByIdAndPost_CustomerId(offerId, customer.getId());
+
         if (offer == null) {
             throw new ApiException("Offer with ID " + offerId + " not found.");
         }
@@ -230,6 +234,7 @@ public class OfferService {
         order.setStatus("PLACED");
         order.setPaymentStatus("PENDING");
 
+        order.setOffer(offer);
         // Associate the offer with the order
         offer.setOrder(order);
         offer.setOfferStatus("ACCEPTED");
@@ -243,6 +248,8 @@ public class OfferService {
         notification.setMassage("لقد قبلت هذا العرض");
         notification.setCreateAt(LocalDateTime.now());
         notification.setMyUser(customer);
+
+        notificationRepository.save(notification);
 
         // notification for the custom broker that his order has been accepted
         Notification notification2= new Notification();

@@ -20,7 +20,7 @@ public interface CustomBrokerRepository extends JpaRepository<CustomsBroker,Inte
 
 //    List<CustomsBroker> getCustomsBrokerByCustomerName(String customerName);
 
-    List<CustomsBroker> getCustomsBrokerByCompanyName(String customerId);
+    List<CustomsBroker> getCustomsBrokerByUserFullName(String name);
 
     List<CustomsBroker>getCustomsBrokerByLicenseType(String licenseType);
 

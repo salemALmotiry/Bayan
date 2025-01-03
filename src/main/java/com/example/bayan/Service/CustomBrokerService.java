@@ -3,7 +3,9 @@ package com.example.bayan.Service;
 
 import com.example.bayan.Api.ApiException;
 import com.example.bayan.DTO.IN.CustomsBrokerDTO;
+import com.example.bayan.DTO.IN.UpdateCustomsBrokerDTO;
 import com.example.bayan.DTO.OUT.CustomBrokerDTO;
+import com.example.bayan.DTO.OUT.CustomBrokerFilterDTO;
 import com.example.bayan.Model.CustomsBroker;
 import com.example.bayan.Model.MyUser;
 import com.example.bayan.Repostiry.AuthRepository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,11 +28,10 @@ public class CustomBrokerService {
 
     // register new Custom Broker
     public void register(CustomsBrokerDTO customsBrokerDTO){
-        MyUser broker = new MyUser();
 
+        MyUser broker = new MyUser();
         broker.setUsername(customsBrokerDTO.getUsername());
-        String hashedPassword = new BCryptPasswordEncoder().encode(customsBrokerDTO.getPassword());
-        broker.setPassword(hashedPassword);
+        broker.setPassword(new BCryptPasswordEncoder().encode(customsBrokerDTO.getPassword()));
         broker.setFullName(customsBrokerDTO.getFullName());
         broker.setEmail(customsBrokerDTO.getEmail());
         broker.setPhoneNumber(customsBrokerDTO.getPhoneNumber());
@@ -38,11 +40,15 @@ public class CustomBrokerService {
         authRepository.save(broker);
 
         CustomsBroker customsBroker = new CustomsBroker();
-        customsBroker.setCommercialLicense(customsBroker.getLicenseNumber());
-        customsBroker.setLicenseNumber(customsBroker.getLicenseNumber());
-        customsBroker.setLicenseType(customsBroker.getLicenseType());
-        customsBroker.setCompanyName(customsBroker.getCompanyName());
+        customsBroker.setCommercialLicense(customsBrokerDTO.getCommercialLicense());
+        customsBroker.setLicenseNumber(customsBrokerDTO.getLicenseNumber());
+        customsBroker.setLicenseType(customsBrokerDTO.getLicenseType());
+        customsBroker.setCompanyName(customsBrokerDTO.getCompanyName());
+
+        customsBroker.setUser(broker);
+
         customBrokerRepository.save(customsBroker);
+
     }
 
     // get .. MyProfile .. Custom Broker
@@ -56,25 +62,24 @@ public class CustomBrokerService {
     }
 
     // update
-    public void updateMyAccount(Integer broker_id , CustomsBrokerDTO customsBrokerDTO){
+    public void updateMyAccount(Integer broker_id , UpdateCustomsBrokerDTO customsBrokerDTO){
       MyUser oldBroker = authRepository.findMyUserById(broker_id);
         if (oldBroker==null){
             throw new ApiException("Broker Id is wrong");
         }
         oldBroker.setUsername(customsBrokerDTO.getUsername());
-        String hashedPassword = new BCryptPasswordEncoder().encode(customsBrokerDTO.getPassword());
-        oldBroker.setPassword(hashedPassword);
+
         oldBroker.setFullName(customsBrokerDTO.getFullName());
         oldBroker.setEmail(customsBrokerDTO.getEmail());
         oldBroker.setPhoneNumber(customsBrokerDTO.getPhoneNumber());
         oldBroker.setUpdatedAt(LocalDateTime.now());
         authRepository.save(oldBroker);
 
-        CustomsBroker customsBroker = new CustomsBroker();
-        customsBroker.setCommercialLicense(customsBroker.getLicenseNumber());
-        customsBroker.setLicenseNumber(customsBroker.getLicenseNumber());
-        customsBroker.setLicenseType(customsBroker.getLicenseType());
-        customsBroker.setCompanyName(customsBroker.getCompanyName());
+        CustomsBroker customsBroker = oldBroker.getBroker();
+        customsBroker.setCommercialLicense(customsBrokerDTO.getCommercialLicense());
+        customsBroker.setLicenseNumber(customsBrokerDTO.getLicenseNumber());
+        customsBroker.setLicenseType(customsBrokerDTO.getLicenseType());
+        customsBroker.setCompanyName(customsBrokerDTO.getCompanyName());
         customBrokerRepository.save(customsBroker);
     }
 
@@ -88,52 +93,66 @@ public class CustomBrokerService {
     }
 
 
-    //*** EndPoint to get Customs Brokers By LicenseNumber
-       public CustomsBroker getByLicenseNumber(String lNumber){
-    CustomsBroker customsBrokerList =customBrokerRepository.getCustomsBrokersByLicenseNumber(lNumber);
+    // *** EndPoint to Get Customs Broker By License Number
+    public CustomBrokerFilterDTO getByLicenseNumber(String lNumber) {
+        CustomsBroker customsBroker = customBrokerRepository.getCustomsBrokersByLicenseNumber(lNumber);
 
-    if(customsBrokerList==null){
-        throw new ApiException("Customs Broker with this"+lNumber+" does not exist");
-
-    }
-    return customsBrokerList;
-       }
-
-
-    //*** EndPoint to get All Customs Brokers they works in one border
-
-    public List<CustomsBroker>getAllCustomsByBorder(String border){
-        List<CustomsBroker>customsBrokers=customBrokerRepository.getCustomsBrokerByBorderName(border);
-
-        if(customsBrokers.isEmpty()){
-            throw new ApiException("Customs Broker with this"+border+" does not exist");
+        if (customsBroker == null) {
+            throw new ApiException("No Customs Broker found with license number: " + lNumber);
         }
-        return customsBrokers;
+
+        return mapToCustomBrokerFilterDTO(customsBroker);
     }
 
-    //*** EndPoint to get All Customs Brokers By the name
+    // *** EndPoint to Get All Customs Brokers Working at a Specific Border
+    public List<CustomBrokerFilterDTO> getAllCustomsByBorder(String border) {
+        List<CustomsBroker> customsBrokers = customBrokerRepository.getCustomsBrokerByBorderName(border);
 
-    public List<CustomsBroker>getAllCustomsByName(String name){
-     List<CustomsBroker>customsBrokers=customBrokerRepository.getCustomsBrokerByCompanyName(name);
+        if (customsBrokers.isEmpty()) {
+            throw new ApiException("No Customs Brokers found for the border: " + border);
+        }
 
-     if(customsBrokers.isEmpty()){
-         throw new ApiException("Customs Broker with this"+name+" does not exist");
-     }
-     return customsBrokers;
+        return customsBrokers.stream()
+                .map(this::mapToCustomBrokerFilterDTO)
+                .collect(Collectors.toList());
+    }
+
+    // *** EndPoint to Get All Customs Brokers By Name
+    public List<CustomBrokerFilterDTO> getAllCustomsByName(String name) {
+        List<CustomsBroker> customsBrokers = customBrokerRepository.getCustomsBrokerByUserFullName(name);
+
+        if (customsBrokers.isEmpty()) {
+            throw new ApiException("No Customs Brokers found with the name: " + name);
+        }
+
+        return customsBrokers.stream()
+                .map(this::mapToCustomBrokerFilterDTO)
+                .collect(Collectors.toList());
+    }
+
+    // *** EndPoint to Get All Customs Brokers By License Type
+    public List<CustomBrokerFilterDTO> getAllCustomsByLicenseType(String type) {
+        List<CustomsBroker> customsBrokers = customBrokerRepository.getCustomsBrokerByLicenseType(type);
+
+        if (customsBrokers.isEmpty()) {
+            throw new ApiException("No Customs Brokers found with license type: " + type);
+        }
+
+        return customsBrokers.stream()
+                .map(this::mapToCustomBrokerFilterDTO)
+                .collect(Collectors.toList());
     }
 
 
-    //*** EndPoint to get All Customs Brokers By the By License Type
-
-   public List<CustomsBroker>getAllCustomsBYLicenseType(String type){
-       List<CustomsBroker>customsBrokers=customBrokerRepository.getCustomsBrokerByLicenseType(type);
-
-       if (customsBrokers.isEmpty()){
-           throw new ApiException("Customs Broker with this"+type+" does not exist");
-
-       }
-       return customsBrokers;
-   }
+    // Helper method to map CustomsBroker entity to CustomBrokerFilterDTO
+    private CustomBrokerFilterDTO mapToCustomBrokerFilterDTO(CustomsBroker customsBroker) {
+        return new CustomBrokerFilterDTO(
+                customsBroker.getUser().getFullName(),
+                customsBroker.getLicenseNumber(),
+                customsBroker.getCommercialLicense(),
+                customsBroker.getLicenseType()
+        );
+    }
 
 
 
