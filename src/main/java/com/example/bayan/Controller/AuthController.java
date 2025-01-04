@@ -16,9 +16,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PutMapping("/accept-custom-broker/admin/{adminId}/custom-broker/{customerId}")
-    public ResponseEntity<?> acceptCustomBroker(
-            @PathVariable Integer adminId,
-            @PathVariable Integer customerId) {
+    public ResponseEntity<?> acceptCustomBroker(@PathVariable Integer adminId, @PathVariable Integer customerId) {
         authService.acceptCustomBroker(adminId, customerId);
         return ResponseEntity.status(200).body(new ApiResponse("Customs Broker has been activated successfully."));
     }

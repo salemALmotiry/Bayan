@@ -15,4 +15,6 @@ public interface RequiredDocumentsRepository extends JpaRepository<RequiredDocum
     List<RequiredDocuments> findAllByPostId(Integer postId) ;
 
     RequiredDocuments findRequiredDocumentsById(Integer id);
+
+    List<RequiredDocuments> findRequiredDocumentsByPostId(Integer postId);
 }

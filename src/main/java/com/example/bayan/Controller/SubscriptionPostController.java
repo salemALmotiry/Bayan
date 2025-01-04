@@ -45,4 +45,6 @@ public class SubscriptionPostController {
         return ResponseEntity.status(200).body(new ApiResponse("Subscription Post deleted Successfully"));
     }
 
+
+
 }

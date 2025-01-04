@@ -29,7 +29,7 @@ public class CustomerController {
         return ResponseEntity.ok().body(new ApiResponse("Customer registered Successfully"));
     }
 
-    // get .. myAccount
+    // get .. myAccount profile
     @GetMapping("/myAccount/{customer_Id}")
     public ResponseEntity<?> myProfile(@PathVariable Integer customer_Id){
         return ResponseEntity.status(200).body(customerService.getMyAccount(customer_Id));

@@ -13,6 +13,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     Post findPostById(Integer postId);
 
+    Post findPostByIdAndCustomerId(Integer postId, Integer customerId);
+
 
     List<Post> findPostsByCustomsBrokers(CustomsBroker broker);
 

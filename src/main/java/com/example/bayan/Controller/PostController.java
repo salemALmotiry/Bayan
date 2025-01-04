@@ -68,7 +68,7 @@ public class PostController {
     }
 
     // Display posts that were sent specifically to the customer
-
+    // display ads that sent to broker
     @GetMapping("/broker/{brokerId}/posts")
     public ResponseEntity<List<PostDTO>> getPostsForBroker(@PathVariable Integer brokerId) {
         List<PostDTO> posts = postService.getPostsForBroker(brokerId);
