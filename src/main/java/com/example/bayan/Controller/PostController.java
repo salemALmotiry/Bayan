@@ -96,7 +96,7 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
-    // Get all posts by category and country of origin
+    // Get all posts by ca tegory and country of origin
     @GetMapping("/by-category-and-country/{category}/{countryOfOrigin}")
     public ResponseEntity<?> getAllPostsByCategoryAndCountryOfOrigin(@PathVariable String category, @PathVariable String countryOfOrigin) {
         List<Post> posts = postService.getAllPostByTheCategoryAndCountryOfOrigin(category, countryOfOrigin);
