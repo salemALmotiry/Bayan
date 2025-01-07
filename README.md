@@ -80,6 +80,11 @@ As part of developing the **Bayan** platform, I implemented the following:
 
 ### 🚀 Features Developed
 
+1. **Model**  
+   - Customer
+   - CustomBroker
+   - Delivery
+   - MyUser
 1. **CRUD Operations**  
    - Address
    - Delivery
