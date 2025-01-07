@@ -64,7 +64,13 @@
 - [Diagrams Part 2](#)
 
 ---
+## Diagram
+![image](https://github.com/user-attachments/assets/f8633fc7-8efe-4132-9a1e-bdd2a552a960)
 
+## User 
+![image](https://github.com/user-attachments/assets/83ef3fbf-a588-4515-88e5-a3f6cd0c6a2e)
+
+----
 ## 👩‍💻 My Work on the Project
 
 As part of developing the **Bayan** platform, I implemented the following:
