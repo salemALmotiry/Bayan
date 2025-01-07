@@ -87,16 +87,36 @@ As part of developing the **Bayan** platform, I implemented the following:
    - Transactions  
 
 2. **Extra Functionalities**  
-   - `getShipmentsByStatus(EXTRA)`  
-   - `getCustomsBrokersByLocation(EXTRA)`  
-   - `getShipmentsByClientType(EXTRA)`  
-   - `getPaymentsByMethod(EXTRA)`  
-   - `getShipmentDetailsById(EXTRA)`  
-   - `updateShipmentStatus(EXTRA)`  
-   - `generateCustomsDocumentation(EXTRA)`  
-   - `securePaymentProcessing(EXTRA)`  
-   - `customerSupportTickets(EXTRA)`  
-   - `shipmentAnalytics(EXTRA)`  
+## قائمة النقاط النهائية (API Endpoints)
+
+| **طريقة HTTP** | **المسار النسبي**                                    | **ميثود الخدمة**                |
+|----------------|------------------------------------------------------|----------------------------------|
+| POST           | `/broker-rate-customer/{orderId}`                    | `brokerRateCustomer`             |
+| POST           | `/customer-rate-broker/{orderId}`                    | `customerReviewBroker`           |
+| PUT            | `/broker-update-review-customer/{reviewId}`          | `updateBrokerRating`             |
+| PUT            | `/customer-update-review-broker/{reviewId}`          | `updateCustomerReview`           |
+| GET            | `/broker-reviews/{brokerId}`                          | `allReviewsOnCustomBroker`       |
+| GET            | `/customer/{customerId}/reviews`                      | `allReviewsOnCustomer`           |
+| GET            | `/customer/{customerId}/average-rating`               | `allAverageOnCustomer`           |
+| POST           | `/add-carrier/{orderId}`                              | `addCarrier`                     |
+| PUT            | `/update-status/{deliveryId}`                         | `updateStatus`                   |
+| POST           | `/track-air-shipment`                                 | `trackAirShipment`               |
+| POST           | `/track-sea-container`                                | `trackSeaContainer`              |
+| POST           | `/track-by-carrier/{deliveryId}/{orderId}`            | `trackByCarrier`                 |
+| PUT            | `/cancel-order/{orderId}`                             | `cancelOrder`                    |
+| PUT            | `/cancel-order-broker/{orderId}`                      | `cancelOrderBroker`              |
+| PUT            | `/set-payment-completed/{orderId}`                    | `setPaymentCompleted`            |
+| PUT            | `/set-payment-waiting-for-approve/{orderId}`          | `setPaymentWaitingForApprove`   |
+| GET            | `/my-orders`                                          | `myOrders`                       |
+| GET            | `/order-details/customer/{orderId}`                   | `orderDetailsForCustomer`        |
+| GET            | `/order-details/broker/{orderId}`                     | `orderDetailsForBroker`          |
+| GET            | `/my-orders-as-broker`                                | `myOrdersAsBroker`               |
+| POST           | `/upload-multiple/{postId}`                           | `uploadMultipleFiles`            |
+| GET            | `/get-files/{postId}`                                 | `getFilesByPostAndUser`          |
+| GET            | `/get-files-broker/{postId}/{customerId}`             | `getFilesByPostAndUserForBroker` |
+| GET            | `/download/{offerId}/{documentId}`                     | `downloadFile`                   |
+| GET            | `/download-for-customer/{postId}/{documentId}`         | `downloadFileForCustomer`        |
+| POST           | `/calculate-cbm`                                      | `calculateCbm`                   |
 
 3. **API Development**  
    Designed and implemented APIs for shipment tracking and management.
