@@ -81,7 +81,9 @@ As part of developing the **Bayan** platform, I implemented the following:
 ### 🚀 Features Developed
 
 1. **CRUD Operations**  
-   - SubscriptionPost
+   - Address
+   - Delivery
+   - Post
 
 
 2. **Extra Functionalities**  
