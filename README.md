@@ -67,8 +67,11 @@
 ## Diagram
 ![image](https://github.com/user-attachments/assets/f8633fc7-8efe-4132-9a1e-bdd2a552a960)
 
-## User 
-![image](https://github.com/user-attachments/assets/83ef3fbf-a588-4515-88e5-a3f6cd0c6a2e)
+## User cases 
+![image](https://github.com/user-attachments/assets/44bb88da-2b41-4cf2-82bd-64e8a707ab90)
+![image](https://github.com/user-attachments/assets/50c32047-16e0-4025-84fb-0b57b66e7916)
+![image](https://github.com/user-attachments/assets/3ae585af-cfe2-4b43-a2aa-85fa439262da)
+![image](https://github.com/user-attachments/assets/8eed383e-5e78-4a1d-9e8d-17e3fdf6f797)
 
 ----
 ## 👩‍💻 My Work on the Project
