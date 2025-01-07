@@ -57,11 +57,9 @@
 
 ## 🔗 Links and Resources
 
-- [Figma Design](#)  
-- [Presentation](#)  
+- [Figma Design](https://www.figma.com/design/zTIO7kQz6k6514lARuOtXo/Untitled1?node-id=0-1&p=f&t=1OL4NiM8cWGly5It-0)  
 - [Postman API](https://documenter.getpostman.com/view/40740226/2sAYJAcwpL)  
-- [Diagrams Part 1](#)  
-- [Diagrams Part 2](#)
+
 
 ---
 ## Diagram
