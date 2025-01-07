@@ -139,8 +139,6 @@ As part of developing the **Bayan** platform, I implemented the following:
 | OUT       | CustomerRentalsDTO      |
 | OUT       | CustomerOfferDTO        |
 
-4. **API Development**  
-   Designed and implemented APIs for shipment tracking and management.
 5. **J Usent Test - Conteoller**
    -Test Get All Posts
    -Test Add Post
