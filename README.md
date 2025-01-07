@@ -81,65 +81,59 @@ As part of developing the **Bayan** platform, I implemented the following:
 ### 🚀 Features Developed
 
 1. **CRUD Operations**  
-   - Shipments  
-   - Customs Brokers  
-   - Clients  
-   - Transactions  
+   - SubscriptionPost
+
 
 2. **Extra Functionalities**  
 ## قائمة النقاط النهائية (API Endpoints)
 
 | **طريقة HTTP** | **المسار النسبي**                                    | **ميثود الخدمة**                |
 |----------------|------------------------------------------------------|----------------------------------|
-| POST           | `/broker-rate-customer/{orderId}`                    | `brokerRateCustomer`             |
-| POST           | `/customer-rate-broker/{orderId}`                    | `customerReviewBroker`           |
-| PUT            | `/broker-update-review-customer/{reviewId}`          | `updateBrokerRating`             |
-| PUT            | `/customer-update-review-broker/{reviewId}`          | `updateCustomerReview`           |
-| GET            | `/broker-reviews/{brokerId}`                          | `allReviewsOnCustomBroker`       |
-| GET            | `/customer/{customerId}/reviews`                      | `allReviewsOnCustomer`           |
-| GET            | `/customer/{customerId}/average-rating`               | `allAverageOnCustomer`           |
-| POST           | `/add-carrier/{orderId}`                              | `addCarrier`                     |
-| PUT            | `/update-status/{deliveryId}`                         | `updateStatus`                   |
-| POST           | `/track-air-shipment`                                 | `trackAirShipment`               |
-| POST           | `/track-sea-container`                                | `trackSeaContainer`              |
-| POST           | `/track-by-carrier/{deliveryId}/{orderId}`            | `trackByCarrier`                 |
-| PUT            | `/cancel-order/{orderId}`                             | `cancelOrder`                    |
-| PUT            | `/cancel-order-broker/{orderId}`                      | `cancelOrderBroker`              |
-| PUT            | `/set-payment-completed/{orderId}`                    | `setPaymentCompleted`            |
-| PUT            | `/set-payment-waiting-for-approve/{orderId}`          | `setPaymentWaitingForApprove`   |
-| GET            | `/my-orders`                                          | `myOrders`                       |
-| GET            | `/order-details/customer/{orderId}`                   | `orderDetailsForCustomer`        |
-| GET            | `/order-details/broker/{orderId}`                     | `orderDetailsForBroker`          |
-| GET            | `/my-orders-as-broker`                                | `myOrdersAsBroker`               |
-| POST           | `/upload-multiple/{postId}`                           | `uploadMultipleFiles`            |
-| GET            | `/get-files/{postId}`                                 | `getFilesByPostAndUser`          |
-| GET            | `/get-files-broker/{postId}/{customerId}`             | `getFilesByPostAndUserForBroker` |
-| GET            | `/download/{offerId}/{documentId}`                     | `downloadFile`                   |
-| GET            | `/download-for-customer/{postId}/{documentId}`         | `downloadFileForCustomer`        |
-| POST           | `/calculate-cbm`                                      | `calculateCbm`                   |
+| POST           | `/add`                                               | `addPost`             |
+| GET            | `/my-posts                      `                    | `getMyPosts`           |
+| GET            | `/get-all-posts`                                     | `/get-all-posts`             |
+| POST            | `/send-ad-to-broker/{brokerId}`                      | `sendPostForOneBroker`           |
+| GET            | `/broker/posts`                                       | `getPostsForBroker`       |
+| POST            | `/create-offer`                                       | `createOffer`                    |
+| POST            | `/add-address`                                        | `addAddress`                   |
+| GET            | `/my-addresses`                                       | `myAddress`                     |
+| PUT            | `/accept-custom-broker/custom-broker/{customerId}`    | `acceptCustomBroker`               |
+| PUT            | `/reject-custom-broker/custom-broker/{customerId}`    | `rejectCustomBroker`              |
+| GET           | `/custom-brokers`                                     | `getAllCustomBrokers`              |
+| GET           | `/custom-brokers/waiting-for-acceptance`               | `getBrokersWaitingForAcceptance`  |
+| GET            | `/get-all-my-notifications`                             | `getAllNotifications`            |
+| PUT            | `/read-my-notifications/{notificationId}/mark-as-read` | `markNotificationAsRead`         |
+| POST           | `/register`                                           | `register`                      |
+| DELETE         | `/remove-border/{borderId}`                           | `/remove-border/{borderId}`   |
+| GET            | `/my-profile`                                          | `myProfile`                       |
+| GET            | `/display-all-custom-brokers`                         | `getAllCustomsBrokers`           |
+| GET            | `/license-number/{licenseNumber}`                     | `getByLicenseNumber`          |
+| GET            | `/border/{border}`                                    | `getAllCustomsByBorder`          |
+| GET            | `/name/{name}`                                       | `getAllCustomsByName`            |
+| GET            | `/license-type/{type}`                                 | `getAllCustomsByLicenseType`    |
+| PUT            | `/accept-offer/{offerId} `                          | `acceptOffer`                     |
+| GET            | `/all-offer-post/{postId},`                          | `getAllOffersForOnePost`          |
 
 ## القسم الأول
 
-| **المجلد**   | **النوع**   | **الاسم**              |
-|--------------|-------------|------------------------|
-| IN           | Offer       | OfferDTO              |
-| IN           | Offer       | OfferForManyOrder     |
-| IN           | Offer       | OfferWithDeliveryDTO  |
-| IN           | Post        | AddressDTO            |
-| IN           | Post        | CbmDTO                |
-| IN           | Post        | ChatMessagesDTO       |
-| IN           | Post        | CustomerDTO           |
-| OUT          | Post        | PostDTO               |
-| OUT          | Post        | SubscriptionPostDTO   |
-| OUT          | Post        | AddressDTO            |
-| OUT          | Post        | BorderDTO             |
-| OUT          | Post        | BrokerRentalsDTO      |
+| **المجلد**    | **الاسم**       |
+|-----------|------------------------|
+| IN        |AddPostDTO              |
+| IN        |ReviewCustomerDTO       |
+| IN        | UpdateCustomerDTO      |
+| IN        |UpdateCustomsBrokerDTO  |
+| OUT       | ReviewDTO              |
+| OUT       |OrderDTO                |
+| OUT       | OfferDTO               |
+| OUT       | DocumentsDTO           |
+| OUT       | DeliveryDTO            |
+| OUT       | NotifationDTO          |
+| OUT       | CustomerDTO            |
+| OUT       | CustomerRentalsDTO      |
+| OUT       | CustomerOfferDTO        |
 
 3. **API Development**  
    Designed and implemented APIs for shipment tracking and management.
-
-4. **Testing**  
-   Conducted comprehensive testing of controllers and services to ensure system reliability.
 
 ---
 
