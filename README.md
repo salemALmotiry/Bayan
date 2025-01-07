@@ -118,6 +118,23 @@ As part of developing the **Bayan** platform, I implemented the following:
 | GET            | `/download-for-customer/{postId}/{documentId}`         | `downloadFileForCustomer`        |
 | POST           | `/calculate-cbm`                                      | `calculateCbm`                   |
 
+## القسم الأول
+
+| **المجلد**   | **النوع**   | **الاسم**              |
+|--------------|-------------|------------------------|
+| IN           | Offer       | OfferDTO              |
+| IN           | Offer       | OfferForManyOrder     |
+| IN           | Offer       | OfferWithDeliveryDTO  |
+| IN           | Post        | AddressDTO            |
+| IN           | Post        | CbmDTO                |
+| IN           | Post        | ChatMessagesDTO       |
+| IN           | Post        | CustomerDTO           |
+| OUT          | Post        | PostDTO               |
+| OUT          | Post        | SubscriptionPostDTO   |
+| OUT          | Post        | AddressDTO            |
+| OUT          | Post        | BorderDTO             |
+| OUT          | Post        | BrokerRentalsDTO      |
+
 3. **API Development**  
    Designed and implemented APIs for shipment tracking and management.
 
