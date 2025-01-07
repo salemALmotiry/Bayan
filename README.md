@@ -59,7 +59,7 @@
 
 - [Figma Design](#)  
 - [Presentation](#)  
-- [Postman API](#)  
+- [Postman API](https://documenter.getpostman.com/view/40740226/2sAYJAcwpL)  
 - [Diagrams Part 1](#)  
 - [Diagrams Part 2](#)
 
