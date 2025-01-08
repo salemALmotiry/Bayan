@@ -203,7 +203,7 @@ This project was built using:
 - **Git**
 - **DataGrip**
 - **Selenium**
-- **ChromeDriver** – For running tests on Google Chrome.
+- **ChromeDriver**
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
