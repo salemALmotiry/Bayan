@@ -23,7 +23,9 @@
 <p align="center">
   <a href="">
 <img src="images/tuwaiq.png" alt="logo" width="152" height="100">
-  </a>
+<img src="images/bayan.png" alt="logo" width="152" height="100">
+ 
+</a>
  
 <h3 align="center">Bayan</h3>
 
