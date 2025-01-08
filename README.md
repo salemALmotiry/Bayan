@@ -52,10 +52,11 @@
   * [Live Version](#live-version)
   * [Usage](#usage)
 * [Key Features](#key-features)
-* [Diagram](#Diagram)
+* [Diagram](#diagram)
 * [User Cases](#user-cases)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
+  * [Models](#Models)
 * [Models](#models)
 * [License](#license)
 
@@ -111,7 +112,7 @@ Upload, organize, and download shipment-related documents with ease.
 Stay informed with instant updates through email and SMS notifications.
 
 
-## Diagram
+## diagram
 ![img.png](img.png)
 <!-- LIVE VERSION -->
 
@@ -191,13 +192,19 @@ Feel free to check the [issues page](https://github.com/salemALmotiry/Bayan/issu
 ### Built With
 This project was built using:
 
-- **Java SE **
+- **Java SE**
 - **IntelliJ IDEA**
 - **MySQL**
 - **Spring Boot**
-- **Hibernate**
+- **AWS**
+- **Ultramsg**
+- **Spring Boot Mail Integration**
 - **Postman**
 - **Git**
+- **DataGrip**
+- **Selenium**
+- **ChromeDriver** – For running tests on Google Chrome.
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
