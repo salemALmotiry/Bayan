@@ -72,35 +72,42 @@ supported by innovative tools that help reduce time and effort while simplifying
 <!-- ABOUT THE PROJECT -->
 ## 🛠 Key Features
 
-- **Customer and Broker Reviews**  
-  Facilitate mutual feedback with ratings and reviews to enhance collaboration.
+### **Customer and Broker Reviews**
+Facilitate mutual feedback with ratings and reviews to enhance collaboration.
 
-### Order Management
+---
+
+### **Order Management**
 Simplify order processing, track shipments, and manage delivery statuses effortlessly.
 
 ---
 
-### Shipment Tracking
+### **Shipment Tracking**
 Track shipments with precision using various supported providers:
 
-#### **Small and Medium Shipments (Air and Land Logistics):**
+#### Small and Medium Shipments (Air and Land Logistics):
 - **Aramex**
 - **Naqel**
 - **DHL**
 
-#### **Large Shipments (Air and Sea Logistics):**
+#### Large Shipments (Air and Sea Logistics):
 - **Saudi Cargo** (Air – specializes in large shipments)
 - **MSC** (Sea – handles large cargo)
 
+---
 
-- **Offer and Request Handling**  
-  Seamlessly create requests, receive offers, and manage collaboration with customs brokers.
+### **Offer and Request Handling**
+Seamlessly create requests, receive offers, and manage collaboration with customs brokers.
 
-- **File Management System**  
-  Upload, organize, and download shipment-related documents with ease.
+---
 
-- **Notifications and Alerts**  
-  Stay informed with instant updates through email and SMS notifications.
+### **File Management System**
+Upload, organize, and download shipment-related documents with ease.
+
+---
+
+### **Notifications and Alerts**
+Stay informed with instant updates through email and SMS notifications.
 
 
 ## diagram
