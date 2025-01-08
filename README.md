@@ -56,7 +56,6 @@
 * [User Cases](#user-cases)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
-  * [Models](#Models)
 * [Models](#models)
 * [License](#license)
 
