@@ -1,129 +1,152 @@
-# Bayan System
 
-**Bayan** is a specialized platform aimed at facilitating customs clearance processes by connecting clients, whether individuals or companies, with reliable customs brokers. **Bayan** provides an advanced shipment management system, supported by innovative tools designed to save time and effort, offering a secure and easy customs experience infused with trust.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
----
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="">
+<img src="images/tuwaiq.png" alt="logo" width="152" height="100">
+<img src="images/bayan.png" alt="logo" width="152" height="100">
+ 
+</a>
+ 
+<h3 align="center">Bayan</h3>
 
+  <p align="center">
+  This final project wraps up the Java Spring Boot Web Application Development bootcamp at Tuwaiq Academy.
+ <br />
+    <a href="https://github.com/salemALmotiry/Bayan"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://www.figma.com/design/zTIO7kQz6k6514lARuOtXo/Untitled1?node-id=0-1&p=f&t=1OL4NiM8cWGly5It-0">Figma</a>
+    ·
+    <a href="https://documenter.getpostman.com/view/40740226/2sAYJAcwpL">Postman API</a>
+    ·
+    <a href="https://github.com/salemALmotiry/Bayan/issues">Request Feature</a>
+  </p>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+Bayan is a specialized platform designed to streamline customs clearance processes by connecting clients, 
+whether individuals or companies, with certified customs brokers. 
+Bayan offers an advanced shipment management system,
+supported by innovative tools that help reduce time and effort while simplifying customs procedures.
+
+بيان هي منصة متخصصة تهدف إلى تسهيل عمليات التخليص الجمركي من خلال ربط العملاء، سواء كانوا أفرادًا أو شركات، بمخلصين جمركيين معتمدين. تقدم بيان نظامًا متطورًا لإدارة الشحنات، مدعومًا بأدوات مبتكرة تُسهم في تقليل الوقت والجهد وتبسيط الإجراءات الجمركية.
+
+
+
+<!-- ABOUT THE PROJECT -->
 ## 🛠 Key Features
 
-- **Connecting Customs Brokers**  
-  Easily connect with accredited and reliable customs brokers to receive professional clearance services.
-
-- **Advanced Shipment Management**  
-  An integrated system for managing shipments, including tracking, document organization, and process optimization.
-
-- **Real-Time Tracking**  
-  Monitor shipment statuses instantly with full transparency.
-
-- **Automated Documentation**  
-  Tools for creating and managing customs documents automatically, reducing errors and saving time.
-
-
-- **Analytics and Reporting**  
-  Comprehensive tools for insights and reports on shipment operations to improve performance.
+### **Customer and Broker Reviews**
+Facilitate mutual feedback with ratings and reviews to enhance collaboration.
 
 ---
 
-## 🌍 منصة بيان
-
-**بيان** هي منصة متخصصة تهدف إلى تسهيل عمليات التخليص الجمركي من خلال ربط العملاء، سواء كانوا أفرادًا أو شركات، بالمخلصين الجمركيين الموثوقين. توفر **بيان** نظامًا متطورًا لإدارة الشحنات، مدعومًا بأدوات مبتكرة تُعنى بتوفير الوقت والجهد، لتقديم تجربة جمركية آمنة وسهلة يتخللها الثقة.
-
----
-
-### ⭐️ الميزات الرئيسية
-
-- **ربط المخلصين الجمركيين**  
-  الاتصال بمخلصين جمركيين معتمدين وموثوقين للحصول على خدمات تخليص احترافية.
-
-- **إدارة الشحنات المتقدمة**  
-  نظام شامل لإدارة الشحنات يتضمن التتبع وتنظيم الوثائق وتحسين العمليات.
-
-- **التتبع في الوقت الحقيقي**  
-  متابعة حالة الشحنات بشفافية كاملة.
-
-- **توثيق آلي**  
-  أدوات آلية لتوثيق المستندات الجمركية، تقلل الأخطاء وتوفر الوقت.
-
-- **معالجة مدفوعات آمنة**  
-  نظام دفع آمن بخيارات متعددة لتلبية احتياجات العملاء.
-
-- **دعم العملاء**  
-  فريق دعم مخصص لتقديم المساعدة في الاستفسارات أو المشاكل.
-
-- **تحليلات وتقارير**  
-  أدوات شاملة للحصول على رؤى قيمة وتحسين الأداء.
+### **Order Management**
+Simplify order processing, track shipments, and manage delivery statuses effortlessly.
 
 ---
 
-## 🔗 Links and Resources
+### **Shipment Tracking**
+Track shipments with precision using various supported providers:
 
-- [Figma Design](#)  
-- [Presentation](#)  
-- [Postman API](https://documenter.getpostman.com/view/40740226/2sAYJAcwpL)  
-- [Diagrams Part 1](#)  
-- [Diagrams Part 2](#)
+#### Small and Medium Shipments (Air and Land Logistics):
+- **Aramex**
+- **Naqel**
+- **DHL**
+
+#### Large Shipments (Air and Sea Logistics):
+- **Saudi Cargo** (Air – specializes in large shipments)
+- **MSC** (Sea – handles large cargo)
 
 ---
+
+### **Offer and Request Handling**
+Seamlessly create requests, receive offers, and manage collaboration with customs brokers.
+
+---
+
+### **File Management System**
+Upload, organize, and download shipment-related documents with ease.
+
+---
+
+### **Notifications and Alerts**
+Stay informed with instant updates through email and SMS notifications.
+
+
 ## Diagram
-![image](https://github.com/user-attachments/assets/f8633fc7-8efe-4132-9a1e-bdd2a552a960)
+![img.png](img.png)
+<!-- LIVE VERSION -->
 
-## User cases 
+## User cases
 ![image](https://github.com/user-attachments/assets/44bb88da-2b41-4cf2-82bd-64e8a707ab90)
 ![image](https://github.com/user-attachments/assets/50c32047-16e0-4025-84fb-0b57b66e7916)
 ![image](https://github.com/user-attachments/assets/3ae585af-cfe2-4b43-a2aa-85fa439262da)
 ![image](https://github.com/user-attachments/assets/8eed383e-5e78-4a1d-9e8d-17e3fdf6f797)
+<!-- Contributing -->
 
-----
-## 👩‍💻 My Work on the Project
+---
+## Models
+| **Model Name**   |
+|------------------|
+| CustomeBroker    |
+| Address          |
+| Delivery         |
+| SubscriptionPost |
 
-As part of developing the **Bayan** platform, I implemented the following:
-
-### 🚀 Features Developed
-
-1. **Model**  
-   - Customer
-   - CustomBroker
-   - Delivery
-   - MyUser
-2. **CRUD Operations**  
+## CRUD Operations  
    - Address
    - Delivery
    - Post
+## Extra endpoint
 
-
-3. **Extra Functionalities**  
-## قائمة النقاط النهائية (API Endpoints)
-
-| **طريقة HTTP** | **المسار النسبي**                                    | **ميثود الخدمة**                |
-|----------------|------------------------------------------------------|----------------------------------|
-| POST           | `/add`                                               | `addPost`             |
-| GET            | `/my-posts                      `                    | `getMyPosts`           |
-| GET            | `/get-all-posts`                                     | `/get-all-posts`             |
-| POST            | `/send-ad-to-broker/{brokerId}`                      | `sendPostForOneBroker`           |
-| GET            | `/broker/posts`                                       | `getPostsForBroker`       |
-| POST            | `/create-offer`                                       | `createOffer`                    |
-| POST            | `/add-address`                                        | `addAddress`                   |
-| GET            | `/my-addresses`                                       | `myAddress`                     |
-| PUT            | `/accept-custom-broker/custom-broker/{customerId}`    | `acceptCustomBroker`               |
+| **HTTP Method** | **Relative Path**                                    | **Service Method**                |
+|----------------|------------------------------------------------------ |---------------------------------- |
+| POST           | `/add`                                                | `addPost`                         |
+| GET            | `/my-posts                      `                     | `getMyPosts`                      |
+| GET            | `/get-all-posts`                                      | `/get-all-posts`                  |
+| POST           | `/send-ad-to-broker/{brokerId}`                       |  `sendPostForOneBroker`           |
+| GET            | `/broker/posts`                                       | `getPostsForBroker`               | 
+| POST           | `/create-offer`                                       | `createOffer`                     |
+| POST           | `/add-address`                                        | `addAddress`                      |
+| GET            | `/my-addresses`                                       | `myAddress`                       |
+| PUT            | `/accept-custom-broker/custom-broker/{customerId}`    | `acceptCustomBroker`              |
 | PUT            | `/reject-custom-broker/custom-broker/{customerId}`    | `rejectCustomBroker`              |
-| GET           | `/custom-brokers`                                     | `getAllCustomBrokers`              |
-| GET           | `/custom-brokers/waiting-for-acceptance`               | `getBrokersWaitingForAcceptance`  |
-| GET            | `/get-all-my-notifications`                             | `getAllNotifications`            |
-| PUT            | `/read-my-notifications/{notificationId}/mark-as-read` | `markNotificationAsRead`         |
-| POST           | `/register`                                           | `register`                      |
-| DELETE         | `/remove-border/{borderId}`                           | `/remove-border/{borderId}`   |
-| GET            | `/my-profile`                                          | `myProfile`                       |
-| GET            | `/display-all-custom-brokers`                         | `getAllCustomsBrokers`           |
-| GET            | `/license-number/{licenseNumber}`                     | `getByLicenseNumber`          |
-| GET            | `/border/{border}`                                    | `getAllCustomsByBorder`          |
-| GET            | `/name/{name}`                                       | `getAllCustomsByName`            |
-| GET            | `/license-type/{type}`                                 | `getAllCustomsByLicenseType`    |
-| PUT            | `/accept-offer/{offerId} `                          | `acceptOffer`                     |
-| GET            | `/all-offer-post/{postId},`                          | `getAllOffersForOnePost`          |
+| GET            | `/custom-brokers`                                     | `getAllCustomBrokers`             |
+| GET            | `/custom-brokers/waiting-for-acceptance`              | `getBrokersWaitingForAcceptance`  |
+| GET            | `/get-all-my-notifications`                           | `getAllNotifications`             |
+| PUT            | `/read-my-notifications/{notificationId}/mark-as-read`| `markNotificationAsRead`          |
+| POST           | `/register`                                           | `register`                        |
+| DELETE         | `/remove-border/{borderId}`                           | `/remove-border/{borderId}`       |
+| GET            | `/my-profile`                                         | `myProfile`                       |
+| GET            | `/display-all-custom-brokers`                         | `getAllCustomsBrokers`            |
+| GET            | `/license-number/{licenseNumber}`                     | `getByLicenseNumber`              |
+| GET            | `/border/{border}`                                    | `getAllCustomsByBorder`           |
+| GET            | `/name/{name}`                                        | `getAllCustomsByName`             |
+| GET            | `/license-type/{type}`                                | `getAllCustomsByLicenseType`      |
+| PUT            | `/accept-offer/{offerId} `                            | `acceptOffer`                     |
+| GET            | `/all-offer-post/{postId},`                           | `getAllOffersForOnePost`          |
 
-## القسم الأول
+---
 
-| **المجلد**    | **الاسم**       |
+### DTO Files
+
 |-----------|------------------------|
 | IN        |AddPostDTO              |
 | IN        |ReviewCustomerDTO       |
@@ -136,25 +159,32 @@ As part of developing the **Bayan** platform, I implemented the following:
 | OUT       | DeliveryDTO            |
 | OUT       | NotifationDTO          |
 | OUT       | CustomerDTO            |
-| OUT       | CustomerRentalsDTO      |
-| OUT       | CustomerOfferDTO        |
+| OUT       | CustomerRentalsDTO     |
+| OUT       | CustomerOfferDTO       |
 
-5. **J Usent Test - Conteoller**
-   -Test Get All Posts
-   -Test Add Post
-   -Test Delete Post
-   -Test Update Post
-   -Test Get My Posts
 
----
+## Testing Frameworks  
+- **JUnit** –  Used for testing, Controller layer validation.  
 
-## 📂 Tags
+### Built With
+This project was built using:
 
-- **#CustomsClearance**  
-- **#ShipmentManagement**  
-- **#RealTimeTracking**  
-- **#SecurePayments**  
-- **#CustomerSupport**  
-- **#Analytics**  
-- **#API**  
-- **#Testing**
+- **Java SE**
+- **IntelliJ IDEA**
+- **MySQL**
+- **Spring Boot**
+- **AWS**
+- **Ultramsg**
+- **Spring Boot Mail Integration**
+- **Postman**
+- **Git**
+- **DataGrip**
+- **Selenium**
+- **ChromeDriver**
+
+
+<!-- License -->
+
+## 📝 License
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
