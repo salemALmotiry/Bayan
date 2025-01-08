@@ -1,9 +1,3 @@
-<!--
-*** Thanks for checking out this README Template. If you have a suggestion that would
-*** make this better, please fork the repo and create a pull request or simply open
-*** an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -52,7 +46,7 @@
   * [Live Version](#live-version)
   * [Usage](#usage)
 * [Key Features](#key-features)
-* [Diagram](#diagram)
+* [Diagram](#Diagram)
 * [User Cases](#user-cases)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
@@ -112,7 +106,7 @@ Upload, organize, and download shipment-related documents with ease.
 Stay informed with instant updates through email and SMS notifications.
 
 
-## diagram
+## Diagram
 ![img.png](img.png)
 <!-- LIVE VERSION -->
 
