@@ -48,8 +48,8 @@
 * [Key Features](#key-features)
 * [Diagram](#Diagram)
 * [User Cases](#user-cases)
-* * [Models](#models)
-  * [JUnit](#Testing-Frameworks)
+* [Models](#models)
+* [JUnit](#Testing-Frameworks)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
 * [License](#license)
@@ -176,8 +176,8 @@ Stay informed with instant updates through email and SMS notifications.
 | OUT          | Post       | BrokerRentalsDTO      |
 
 
-### Testing Frameworks  
-- **JUnit** – For unit and integration testing.  
+## Testing Frameworks  
+- **JUnit** –  Used for testing, repository layer validation.  
 
 ## Live version
 
