@@ -147,6 +147,7 @@ Stay informed with instant updates through email and SMS notifications.
 
 ### DTO Files
 
+| **Type**  | **Name**               |
 |-----------|------------------------|
 | IN        |AddPostDTO              |
 | IN        |ReviewCustomerDTO       |
