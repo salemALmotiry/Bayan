@@ -75,8 +75,23 @@ supported by innovative tools that help reduce time and effort while simplifying
 - **Customer and Broker Reviews**  
   Facilitate mutual feedback with ratings and reviews to enhance collaboration.
 
-- **Order and Shipment Management**  
-  Simplify order processing, track shipments, and manage delivery statuses effortlessly.
+### Order Management
+Simplify order processing, track shipments, and manage delivery statuses effortlessly.
+
+---
+
+### Shipment Tracking
+Track shipments with precision using various supported providers:
+
+#### **Small and Medium Shipments (Air and Land Logistics):**
+- **Aramex**
+- **Naqel**
+- **DHL**
+
+#### **Large Shipments (Air and Sea Logistics):**
+- **Saudi Cargo** (Air – specializes in large shipments)
+- **MSC** (Sea – handles large cargo)
+
 
 - **Offer and Request Handling**  
   Seamlessly create requests, receive offers, and manage collaboration with customs brokers.
