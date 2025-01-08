@@ -52,7 +52,7 @@
   * [Live Version](#live-version)
   * [Usage](#usage)
 * [Key Features](#key-features)
-* [Diagram](#diagram)
+* [Diagram](#Diagram)
 * [User Cases](#user-cases)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
@@ -111,7 +111,7 @@ Upload, organize, and download shipment-related documents with ease.
 Stay informed with instant updates through email and SMS notifications.
 
 
-## diagram
+## Diagram
 ![img.png](img.png)
 <!-- LIVE VERSION -->
 
