@@ -48,10 +48,10 @@
 * [Key Features](#key-features)
 * [Diagram](#Diagram)
 * [User Cases](#user-cases)
+* * [Models](#models)
+  * [JUnit](#Testing-Frameworks)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
-  * [Models](#Models)
-* [Models](#models)
 * [License](#license)
 
 <!-- ABOUT THE PROJECT -->
@@ -117,6 +117,15 @@ Stay informed with instant updates through email and SMS notifications.
 ![image](https://github.com/user-attachments/assets/8eed383e-5e78-4a1d-9e8d-17e3fdf6f797)
 <!-- Contributing -->
 
+---
+## Models
+| **Model Name**   |
+|------------------|
+| Notification     |
+| Offer            |
+| Order            |
+| Post             |
+
 
 ## Extra endpoint
 
@@ -166,14 +175,9 @@ Stay informed with instant updates through email and SMS notifications.
 | OUT          | Post       | BorderDTO             |
 | OUT          | Post       | BrokerRentalsDTO      |
 
----
-## Models
-| **Model Name**   |
-|------------------|
-| Notification     |
-| Offer            |
-| Order            |
-| Post             |
+
+### Testing Frameworks  
+- **JUnit** – For unit and integration testing.  
 
 ## Live version
 
