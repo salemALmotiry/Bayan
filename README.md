@@ -181,7 +181,7 @@ Stay informed with instant updates through email and SMS notifications.
 
 ## Live version
 
-You can see it working [here](https://replit.com/@salmotiry/Bayan)
+You can see it working [here](http://bayan-env-2.eba-uezeuriq.eu-central-1.elasticbeanstalk.com)
 
 
 
