@@ -43,7 +43,7 @@
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
-  * [Live Version](#live-version)
+
   * [Usage](#usage)
 * [Key Features](#key-features)
 * [Diagram](#Diagram)
@@ -179,9 +179,6 @@ Stay informed with instant updates through email and SMS notifications.
 ## Testing Frameworks  
 - **JUnit** –  Used for testing, repository layer validation.  
 
-## Live version
-
-You can see it working [here](http://bayan-env-2.eba-uezeuriq.eu-central-1.elasticbeanstalk.com)
 
 
 
