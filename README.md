@@ -52,7 +52,7 @@
 * [JUnit](#Testing-Frameworks)
 * [Extra Endpoints](#extra-endpoints)
   * [DTO Files](#dto-files)
-* [License](#license)
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -215,9 +215,3 @@ This project was built using:
 [issues-shield]: https://img.shields.io/github/issues/salemALmotiry/Bayan.svg?style=flat-square
 [issues-url]: https://github.com/salemALmotiry/Bayan/graphs/contributors
 [product-screenshot]: images/tic-tac-toe.png
-
-<!-- License -->
-
-## 📝 License
-
-This project is [MIT](https://opensource.org/licenses/MIT) licensed.
